@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+    <h1>Controle de Mensalidades</h1>
+
+    <a href="/cadastrar-mensalidade/" class="btn btn-primary mb-3">Cadastrar Mensalidade</a>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Aluno</th>
+            <th>Mês</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+
+        {% for m in mensalidades %}
+        <tr>
+            <td>{{ m.aluno.nome }}</td>
+            <td>{{ m.mes_referencia }}</td>
+            <td>R$ {{ m.valor }}</td>
+            
+            <td>
+                {% if m.status == 'PAGO' %}
+                    <span class="badge bg-success">Pago</span>
+                {% else %}
+                    <span class="badge bg-danger">Não Pago</span>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if m.status == 'PAGO' %}
+                    <a href="{% url 'marcar_pendente' m.id %}" class="btn btn-success btn-sm">
+                        Desfazer Pagamento
+                    </a>
+                {% endif %}
+                    <a href="{% url 'marcar_pago' m.id %}" class="btn btn-warning btn-sm">
+                        Marcar como Pago
+                    </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
+</body>
+{% endblock %}
