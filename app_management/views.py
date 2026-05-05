@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
 from django.utils import timezone
-from .models import Aluno, Mensalidade
+from .models import Aluno, Mensalidade, Evento
 
 
 def dashboard(request):
     total_alunos = Aluno.objects.count()
     total_pagas = Mensalidade.objects.filter(status='PAGO').count()
     total_pendentes = Mensalidade.objects.filter(status='PENDENTE').count()
+    eventos = Evento.objects.all().order_by('data')
 
     total_recebido = Mensalidade.objects.filter(status='PAGO').aggregate(total=Sum('valor'))['total'] or 0
     total_pendente_valor = Mensalidade.objects.filter(status='PENDENTE').aggregate(total=Sum('valor'))['total'] or 0
@@ -18,6 +19,7 @@ def dashboard(request):
         'total_pendentes': total_pendentes,
         'total_recebido': total_recebido,
         'total_pendente_valor': total_pendente_valor,
+        'eventos': eventos,
     })
 
 def listar_mensalidades(request):
@@ -103,3 +105,20 @@ def marcar_pendente(request, id):
     mensalidade.save()
 
     return redirect('mensalidades')
+
+def cadastrar_evento(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        data = request.POST.get('data')
+        descricao = request.POST.get('descricao')
+
+        Evento.objects.create(
+            nome=nome,
+            data=data,
+            descricao=descricao
+        )
+
+        return redirect('dashboard')
+
+    return render(request, 'app_management/cadastrar_evento.html')
+

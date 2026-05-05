@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">Cadastrar Evento</h1>
+
+<form method="POST" class="card p-4">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Nome do Evento</label>
+        <input type="text" name="nome" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Data</label>
+        <input type="date" name="data" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        <textarea name="descricao" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Cadastrar</button>
+    <a href="/" class="btn btn-secondary">Cancelar</a>
+
+</form>
+
+{% endblock %}

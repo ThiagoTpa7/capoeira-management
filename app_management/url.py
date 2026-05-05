@@ -10,4 +10,5 @@ urlpatterns = [
     path('excluir/<int:id>/', views.excluir_aluno, name='excluir_aluno'),
     path('cadastrar-mensalidade/', views.cadastrar_mensalidade, name='cadastrar_mensalidade'),
     path('pendente/<int:id>/', views.marcar_pendente, name='marcar_pendente'),
+    path('cadastrar-evento/', views.cadastrar_evento, name='cadastrar_evento'),
 ]

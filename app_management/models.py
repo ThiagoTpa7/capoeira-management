@@ -39,3 +39,11 @@ class Mensalidade(models.Model):
 
     def __str__(self):
         return f"{self.aluno.nome} - {self.mes_referencia}"
+    
+class Evento(models.Model):
+    nome = models.CharField(max_length=100)
+    data = models.DateField()
+    descricao = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome} - {self.data}"
