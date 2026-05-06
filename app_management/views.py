@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
 from django.utils import timezone
 from .models import Aluno, Mensalidade, Evento
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 def dashboard(request):
@@ -120,5 +123,25 @@ def cadastrar_evento(request):
 
         return redirect('dashboard')
 
-    return render(request, 'app_management/cadastrar_evento.html')
+    eventos = Evento.objects.all().order_by('data')
 
+    return render(request, 'cadastrar_evento.html', {'eventos': eventos})
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Usuário ou senha inválidos.')
+
+    return render(request, 'login.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('login_user')

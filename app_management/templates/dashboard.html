@@ -4,6 +4,7 @@
 
 <h1 class="mb-4">Dashboard</h1>
 
+{% if request.user.is_superuser %}
 <div class="row">
 
     <div class="col-md-4">
@@ -58,9 +59,10 @@
     </div>
 
 </div>
+{% endif %}
 
 <br>
-
+{% if request.user.is_superuser %}
 <h3>Inadimplentes</h3>
 
 <table class="table table-striped">
@@ -82,31 +84,74 @@
     </tr>
     {% endfor %}
 </table>
+{% endif %}
 
-<h3>Eventos</h3>
 
-<a href="{% url 'cadastrar_evento' %}" class="btn btn-primary mb-3">
-    Novo Evento
+<h3 class="mt-5 mb-3">Eventos</h3>
+
+{% if request.user.is_superuser %}
+<a href="{% url 'cadastrar_evento' %}" class="btn btn-primary mb-4">
+    + Novo Evento
 </a>
+{% endif %}
 
-<table class="table table-striped">
-    <tr>
-        <th>Nome</th>
-        <th>Data</th>
-        <th>Descrição</th>
-    </tr>
+<div class="container mt-4">
 
-    {% for evento in eventos %}
-    <tr>
-        <td>{{ evento.nome }}</td>
-        <td>{{ evento.data }}</td>
-        <td>{{ evento.descricao }}</td>
-    </tr>
-    {% empty %}
-    <tr>
-        <td colspan="3">Nenhum evento cadastrado</td>
-    </tr>
-    {% endfor %}
-</table>
+    <div class="row">
+        {% for evento in eventos %}
+        
+        <div class="col-12 mb-4">
+            <div class="card">
+
+                <div class="row g-0">
+
+                    <!-- COLUNA DATA -->
+                    <div class="col-md-2 text-center border-end d-flex flex-column justify-content-center">
+                        <h2>{{ evento.data|date:"d" }}</h2>
+                        <span>{{ evento.data|date:"M" }}</span>
+                    </div>
+
+                    <!-- CONTEÚDO -->
+                    <div class="col-md-10">
+                        <div class="card-body">
+
+                            <!-- TÍTULO -->
+                            <h4 class="card-title">
+                                {{ evento.nome }}
+                            </h4>
+
+                            <!-- INFORMAÇÕES -->
+                            <p class="mb-1">
+                                <strong>Local:</strong> {{ evento.local|default:"A definir" }}
+                            </p>
+
+                            <p class="mb-2">
+                                <strong>Formato:</strong> {{ evento.formato|default:"A definir" }}
+                            </p>
+
+                            <!-- DESCRIÇÃO -->
+                            <p class="card-text">
+                                {{ evento.descricao|default:"Sem descrição" }}
+                            </p>
+
+                            <!-- BOTÕES -->
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-warning btn-sm">Me avisa</button>
+                                <button class="btn btn-outline-dark btn-sm">Como chegar</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</div>
+
 
 {% endblock %}
