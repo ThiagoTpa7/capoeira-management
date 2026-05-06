@@ -8,27 +8,23 @@ from django.contrib.auth.decorators import login_required
 
 
 def dashboard(request):
-    total_alunos = Aluno.objects.count()
-    total_pagas = Mensalidade.objects.filter(status='PAGO').count()
-    total_pendentes = Mensalidade.objects.filter(status='PENDENTE').count()
+
     eventos = Evento.objects.all().order_by('data')
 
-    total_recebido = Mensalidade.objects.filter(status='PAGO').aggregate(total=Sum('valor'))['total'] or 0
-    total_pendente_valor = Mensalidade.objects.filter(status='PENDENTE').aggregate(total=Sum('valor'))['total'] or 0
 
     return render(request, 'dashboard.html', {
-        'total_alunos': total_alunos,
-        'total_pagas': total_pagas,
-        'total_pendentes': total_pendentes,
-        'total_recebido': total_recebido,
-        'total_pendente_valor': total_pendente_valor,
         'eventos': eventos,
     })
 
 def listar_mensalidades(request):
+    total_alunos = Aluno.objects.count()
+    total_pagas = Mensalidade.objects.filter(status='PAGO').count()
+    total_pendentes = Mensalidade.objects.filter(status='PENDENTE').count()
     filtro = request.GET.get('filtro')
 
     mensalidades = Mensalidade.objects.all()
+    total_recebido = Mensalidade.objects.filter(status='PAGO').aggregate(total=Sum('valor'))['total'] or 0
+    total_pendente_valor = Mensalidade.objects.filter(status='PENDENTE').aggregate(total=Sum('valor'))['total'] or 0
 
     if filtro == 'pendentes':
         mensalidades = mensalidades.filter(status='PENDENTE')
@@ -36,7 +32,12 @@ def listar_mensalidades(request):
     mensalidades = mensalidades.order_by('mes_referencia')
 
     return render(request, 'mensalidades.html', {
-        'mensalidades': mensalidades
+        'mensalidades': mensalidades,
+        'total_alunos': total_alunos,
+        'total_pagas': total_pagas,
+        'total_pendentes': total_pendentes,
+        'total_recebido': total_recebido,
+        'total_pendente_valor': total_pendente_valor,
     })
 
 def marcar_pago(request, id):
@@ -114,11 +115,13 @@ def cadastrar_evento(request):
         nome = request.POST.get('nome')
         data = request.POST.get('data')
         descricao = request.POST.get('descricao')
+        localizacao = request.POST.get('localizacao') or None
 
         Evento.objects.create(
             nome=nome,
             data=data,
-            descricao=descricao
+            descricao=descricao,
+            local=localizacao
         )
 
         return redirect('dashboard')
@@ -126,6 +129,10 @@ def cadastrar_evento(request):
     eventos = Evento.objects.all().order_by('data')
 
     return render(request, 'cadastrar_evento.html', {'eventos': eventos})
+
+def detalhe_evento(request, id):
+    evento = get_object_or_404(Evento, id=id)
+    return render(request, 'detalhe_evento.html', {'evento': evento})
 
 def login_user(request):
     if request.method == 'POST':
@@ -145,3 +152,6 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('login_user')
+
+def quem_somos(request):
+    return render(request, 'quem_somos.html')

@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="mb-3">{{ evento.nome }}</h2>
+
+    <p><strong>Data:</strong> {{ evento.data }}</p>
+    <p><strong>Local:</strong> {{ evento.local|default:"A definir" }}</p>
+    <p><strong>Formato:</strong> {{ evento.formato|default:"A definir" }}</p>
+
+    <hr>
+
+    <p>{{ evento.descricao }}</p>
+
+    {% if evento.localizacao %}
+        <a href="{{ evento.localizacao }}" target="_blank" class="btn btn-dark">
+            Como chegar
+        </a>
+    {% endif %}
+
+    <a href="/" class="btn btn-secondary">Voltar</a>
+
+</div>
+
+{% endblock %}

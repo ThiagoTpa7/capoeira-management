@@ -13,4 +13,6 @@ urlpatterns = [
     path('cadastrar-evento/', views.cadastrar_evento, name='cadastrar_evento'),
     path('login/', views.login_user, name='login_user'),
     path('logout/', views.logout_user, name='logout_user'),
+    path('evento/<int:id>/', views.detalhe_evento, name='detalhe_evento'),
+    path('quem-somos/', views.quem_somos, name='quem_somos'),
 ]

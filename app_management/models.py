@@ -45,5 +45,7 @@ class Evento(models.Model):
     data = models.DateField()
     descricao = models.TextField(blank=True, null=True)
 
+    local = models.URLField(blank=True, null=True)
+
     def __str__(self):
         return f"{self.nome} - {self.data}"

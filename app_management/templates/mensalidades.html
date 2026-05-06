@@ -2,6 +2,89 @@
 
 {% block content %}
 
+    {% if request.user.is_superuser %}
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Total de Alunos</h5>
+                        <h2>{{ total_alunos }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Mensalidades Pagas</h5>
+                        <h2>{{ total_pagas }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Não Pagas</h5>
+                        <h2>{{ total_pendentes }}</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card text-center bg-success text-white">
+                    <div class="card-body">
+                        <h5>Total Recebido</h5>
+                        <h2>R$ {{ total_recebido }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card text-center bg-danger text-white">
+                    <div class="card-body">
+                        <h5>Total Pendente</h5>
+                        <h2>R$ {{ total_pendente_valor }}</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
+    <br>
+    {% if request.user.is_superuser %}
+    <h3>Inadimplentes</h3>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Aluno</th>
+            <th>Mês</th>
+            <th>Valor</th>
+        </tr>
+
+        {% for m in inadimplentes %}
+        <tr>
+            <td>{{ m.aluno.nome }}</td>
+            <td>{{ m.mes_referencia }}</td>
+            <td>R$ {{ m.valor }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum inadimplente 🎉</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+
     <h1>Controle de Mensalidades</h1>
 
     <a href="/cadastrar-mensalidade/" class="btn btn-primary mb-3">Cadastrar Mensalidade</a>
