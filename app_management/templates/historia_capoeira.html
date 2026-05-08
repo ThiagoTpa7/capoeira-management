@@ -1,0 +1,195 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <!-- MENU LATERAL -->
+        <div class="col-md-3 menu-lateral">
+
+            <h4 class="mb-4">Tópicos</h4>
+
+            <ul class="nav flex-column">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#origem">Origem</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#caracteristicas_capoeira">Caracteristicas</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#fundamentos_capoeira">Fundamentos Capoeira</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#instrumentos">Instrumentos</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- CONTEÚDO -->
+        <div class="col-md-9 conteudo-historia">
+
+            <section id="origem" class="mb-5">
+                <h2>Origem</h2>
+
+                <p>
+                    A capoeira é uma expressão cultural afro-brasileira composta por elementos musicais e por movimentos corporais da dança e das artes marciais.
+                    A capoeira é uma manifestação cultural afro-brasileira que envolve elementos de dança, arte marcial, música, jogo e religiosidade.
+                    O surgimento da expressão foi protagonizado pelos negros escravizados como forma de resistência à opressão dos senhores e de preservação de suas identidades culturais. A roda, os instrumentos musicais, o canto e os movimentos corporais compõem a performance em capoeira.
+                    Por meio das contribuições de mestres da capoeira, como Bimba e Pastinha, a prática é dividida em duas principais categorias: Angola e regional. Enquanto a primeira, mais tradicional, busca resgatar a herança africana, a segunda recebe influências de artes marciais e ocupa os espaços das academias.
+                </p>
+            </section>
+
+            <section id="caracteristicas_capoeira" class="mb-5">
+                <h2>Características da capoeira</h2>
+
+                <p>
+                    A capoeira reúne diferentes tipos de elementos do campo da musicalidade, luta, religiosidade, dança e costumes. Ela se consolidou enquanto forma de preservar as culturas ancestrais de seus praticantes, bem como de resistir à opressão vivenciada no contexto da escravidão. A capoeira é caracterizada pela da roda de praticantes e tocadores, pelos cantos, pelos instrumentos e pelos movimentos corporais.
+
+                </p>
+            </section>
+
+            <section id="fundamentos_capoeira" class="mb-5">
+                <h2>Fundamentos da Capoeira</h2>
+
+                <p>
+                    Entre os fundamentos da capoeira, estão:
+                    <ul>
+                        <li>disciplina e respeito à tradição;</li>
+                        <li>ritmo do berimbau</li>
+                        <li>preservação da calma e da vigilância durante a prática.</li>
+                    </ul>         
+                </p>
+                <br>
+
+                <h2>Golpes de Capoeira</h2>
+                <p>
+                    Os golpes de capoeira são formados pelos seguintes movimentos, que são caracterizadas pelo uso dos membros e da cabeça:
+                    <ul>
+                        <li>movimentos simples e de manobra;</li>
+                        <li>movimentos de fuga, ataque, contra-ataque, balões e esquiva;</li>
+                        <li>floreios e defesas;</li>
+                        <li>movimentos de entrada, saída, de pedido e chamadas;</li>
+                        <li>movimentos acrobáticos</li>
+                    </ul>
+                </p>
+                <br>
+
+                <h2>Música de Capoeira</h2>
+                A música de capoeira é um elemento essencial para a construção da prática corporal e de seu desenvolvimento. Os diferentes toques executados nos diversos instrumentos, 
+                junto ao coro e o compasso das palmas, compõem a musicalidade dessa manifestação cultural.
+                <p>
+                    <ul>
+                        <h3>Toques das músicas de capoeira</h3>
+                        <ul>
+                            <li>Hino da Capoeira Regional</li>
+                            <li>Benguela</li>
+                            <li>Cavalaria</li>
+                            <li>Santa Maria</li>
+                            <li>Pequeno</li>
+                            <li>Idalina</li>
+                            <li>Amazonas</li>
+                        </ul>
+                    </ul>
+                </p>
+
+                <h2>Tema das músicas de capoeira</h2>
+                <p>
+                    Entre os temas das letras musicais cantadas na capoeira estão as vivências das pessoas escravizadas e as divindades do candomblé. Veja exemplos:
+                </p>
+                <ul>
+                    <li>“Eu vou dizer ao meu senhor que a manteiga derramou/A manteiga não é minha/A manteiga é de ioiô” (ladainha de cotidiano, lembrando dos escravos que trabalhavam na cozinha).</li>
+                    <li>“Oi sim sim sim/Oi não não não” (ladainha de roda, cantada para quando a luta está empatada).</li>
+                    <li>“Salomé, Salomé/Eu já vi homem barbado apanhar de mulher” (ladainha de roda, cantada para quando tem algum homem perdendo de uma mulher).</li>
+                    <li>“Sai sai Catarina/Saia do mar, venha ver Idalina” (ladainha religiosa em homenagem a Iemanjá).</li>
+                </ul>
+
+            </section>
+
+            <section id="instrumentos" class="mb-5">
+                <h2>Instrumentos</h2>
+
+                <p>
+                    A prática da capoeira pode ser realizada com diversos instrumentos. Veja sobre alguns deles a seguir:
+                </p>
+                <ul>
+                        <section id="berimbau" class="instrumento-section mb-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <img src="{% static 'images/berimbau.avif' %}" class="img-fluid instrumento-img" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="text-center">Berimbau</h2>
+                                    <p>
+                                        é um instrumento essencial da capoeira, composto por um arco de madeira com uma corda de aço, verga e cabaça. 
+                                        O dobrão e a baqueta são responsáveis pelo toque do berimbau, junto ao caxixi. 
+                                        Os tipos de berimbau da capoeira Angola são: gunga (grave), médio e viola (agudo). 
+                                        Esse instrumento é de origem dos povos bantos, que habitavam a região central do continente africano.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section id="atabaque" class="instrumento-section mb-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <img src="{% static 'images/atabaque.jpg' %}" class="img-fluid instrumento-img" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="text-center">Atabaque</h2>
+                                    <p>
+                                        é um tambor cilíndrico baixo de origem africana muito comum no candomblé. O ritmo do jogo é marcado por esse instrumento, 
+                                        que acompanha o berimbau gunga.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="pandeiro" class="instrumento-section mb-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <img src="{% static 'images/pandeiro.webp' %}" class="img-fluid instrumento-img" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="text-center">Pandeiro</h2>
+                                    <p>
+                                        é um instrumento de percussão que acompanha o caxixi e possui um som mais agudo do que o atabaque. Uma de suas funções é marcar o compasso.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="caxixi" class="instrumento-section mb-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <img src="{% static 'images/caxixi.jpg' %}" class="img-fluid instrumento-img" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="text-center">Caxixi</h2>
+                                    <p>
+                                        consiste em um pequeno cesto de vime com sementes ou pequenas conchas do mar. Elas criam um efeito sonoro de chocalho. O tocador o utiliza preso ao seu dedo junto ao berimbau.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                </ul>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

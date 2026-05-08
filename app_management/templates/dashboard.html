@@ -12,70 +12,51 @@
 </a>
 {% endif %}
 
+{% for evento in eventos %}
+<div class="card evento-card mb-4">
 
-<div class="container mt-4">
+    
+    <div class="row g-0">   
 
-    <div class="row">
-        {% for evento in eventos %}
-        
-        <div class="col-12 mb-4">
-            <div class="card">
+        <!-- DATA -->
+        <div class="col-md-2 evento-data">
+            <h2>{{ evento.data|date:"d" }}</h2>
+            <span>{{ evento.data|date:"M" }}</span>
+        </div>
 
-                <div class="row g-0">
+        <!-- CONTEÚDO -->
+        <div class="col-md-10">
+            <div class="card-body">
 
-                    <!-- COLUNA DATA -->
-                    <div class="col-md-2 text-center border-end d-flex flex-column justify-content-center">
-                        <h2>{{ evento.data|date:"d" }}</h2>
-                        <span>{{ evento.data|date:"M" }}</span>
-                    </div>
+                <h3 class="evento-titulo">
+                    {{ evento.nome }}
+                </h3>
 
-                    <!-- CONTEÚDO -->
-                    <div class="col-md-10">
-                        <div class="card-body">
+                <p class="evento-info">
+                    {{ evento.local }}
+                </p>
 
-                            <!-- TÍTULO -->
-                            <h4 class="card-title">
-                                {{ evento.nome }}
-                            </h4>
+                <p class="evento-descricao">
+                    {{ evento.descricao|default:"Sem descrição" }}
+                </p>
 
-                            <!-- INFORMAÇÕES -->
-                            <p class="mb-1">
-                                <strong>Local:</strong> {{ evento.local|default:"A definir" }}
-                            </p>
+                <div class="d-flex gap-2 mt-3">
+                    <a href="{% url 'detalhe_evento' evento.id %}" class="btn btn-custom">
+                        Ver mais
+                    </a>
 
-                            <p class="mb-2">
-                                <strong>Formato:</strong> {{ evento.formato|default:"A definir" }}
-                            </p>
-
-                            <!-- DESCRIÇÃO -->
-                            <p class="card-text">
-                                {{ evento.descricao|default:"Sem descrição" }}
-                            </p>
-
-                            <!-- BOTÕES -->
-                            <div class="d-flex gap-2">
-                                <a href="{% url 'detalhe_evento' evento.id %}" class="btn btn-warning btn-sm">
-                                    Ver mais
-                                </a>
-                                {% if evento.local %}
-                                    <a href="{{ evento.local }}" target="_blank" class="btn btn-outline-dark btn-sm">
-                                        Como chegar
-                                    </a>
-                                {% endif %}
-                            </div>
-
-                        </div>
-                    </div>
-
+                    {% if evento.local %}
+                    <a href="{{ evento.local }}" target="_blank" class="btn btn-outline-dark">
+                        Como chegar
+                    </a>
+                    {% endif %}
                 </div>
 
             </div>
         </div>
-
-        {% endfor %}
+	{% endfor %}
     </div>
 
 </div>
-
 
 {% endblock %}

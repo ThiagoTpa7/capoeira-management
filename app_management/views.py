@@ -155,3 +155,6 @@ def logout_user(request):
 
 def quem_somos(request):
     return render(request, 'quem_somos.html')
+
+def historia_capoeira(request):
+    return render(request, 'historia_capoeira.html')
