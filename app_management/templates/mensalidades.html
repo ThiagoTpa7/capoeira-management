@@ -60,30 +60,47 @@
     {% endif %}
 
     <br>
-    {% if request.user.is_superuser %}
-    <h3>Inadimplentes</h3>
 
-    <table class="table table-striped">
-        <tr>
-            <th>Aluno</th>
-            <th>Mês</th>
-            <th>Valor</th>
-        </tr>
+    <form method="GET" class="mb-4">
 
-        {% for m in inadimplentes %}
-        <tr>
-            <td>{{ m.aluno.nome }}</td>
-            <td>{{ m.mes_referencia }}</td>
-            <td>R$ {{ m.valor }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">Nenhum inadimplente 🎉</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+    <div class="row">
 
+        <div class="col-md-4">
+
+            <select name="mes" class="form-select">
+
+                <option value="">Todos os meses</option>
+
+                <option value="01/2026">Janeiro</option>
+                <option value="02/2026">Fevereiro</option>
+                <option value="03/2026">Março</option>
+                <option value="04/2026">Abril</option>
+                <option value="05/2026">
+                   Maio
+                </option>
+                <option value="06/2026">Junho</option>
+                <option value="07/2026">Julho</option>
+                <option value="08/2026">Agosto</option>
+                <option value="09/2026">Setembro</option>
+                <option value="10/2026">Outubro</option>
+                <option value="11/2026">Novembro</option>
+                <option value="12/2026">Dezembro</option>
+
+            </select>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="submit" class="btn btn-custom w-100">
+                Filtrar
+            </button>
+
+        </div>
+
+    </div>
+
+    </form>
 
     <h1>Controle de Mensalidades</h1>
 

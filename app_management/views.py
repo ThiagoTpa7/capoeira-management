@@ -20,14 +20,15 @@ def listar_mensalidades(request):
     total_alunos = Aluno.objects.count()
     total_pagas = Mensalidade.objects.filter(status='PAGO').count()
     total_pendentes = Mensalidade.objects.filter(status='PENDENTE').count()
-    filtro = request.GET.get('filtro')
 
     mensalidades = Mensalidade.objects.all()
+    mes_filtro = request.GET.get('mes')
     total_recebido = Mensalidade.objects.filter(status='PAGO').aggregate(total=Sum('valor'))['total'] or 0
     total_pendente_valor = Mensalidade.objects.filter(status='PENDENTE').aggregate(total=Sum('valor'))['total'] or 0
 
-    if filtro == 'pendentes':
-        mensalidades = mensalidades.filter(status='PENDENTE')
+    
+    if mes_filtro:
+        mensalidades = mensalidades.filter(mes_referencia=mes_filtro)
 
     mensalidades = mensalidades.order_by('mes_referencia')
 
@@ -38,6 +39,7 @@ def listar_mensalidades(request):
         'total_pendentes': total_pendentes,
         'total_recebido': total_recebido,
         'total_pendente_valor': total_pendente_valor,
+        'mes_filtro': mes_filtro,
     })
 
 def marcar_pago(request, id):

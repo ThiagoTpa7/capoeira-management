@@ -197,3 +197,22 @@ ul{
     color: var(--cor-texto)
 }
 
+.instrumento-img { 
+    width: 60% !important;;
+
+    max-width: 280px;
+
+    height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.instrumento-img:hover {
+    transform: scale(1.03);
+}
