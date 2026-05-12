@@ -11,15 +11,6 @@ class Aluno(models.Model):
         return self.nome
 
 
-class Evento(models.Model):
-    nome = models.CharField(max_length=100)
-    data = models.DateField()
-    descricao = models.TextField()
-
-    def __str__(self):
-        return self.nome
-
-
 class Mensalidade(models.Model):
     STATUS_CHOICES = [
         ('PENDENTE', 'Não pago'),
@@ -46,6 +37,12 @@ class Evento(models.Model):
     descricao = models.TextField(blank=True, null=True)
 
     local = models.URLField(blank=True, null=True)
+
+    imagem = models.ImageField(
+        upload_to= 'eventos/',
+        null= True,
+        blank= True
+    )
 
     def __str__(self):
         return f"{self.nome} - {self.data}"

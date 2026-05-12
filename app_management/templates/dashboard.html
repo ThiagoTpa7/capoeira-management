@@ -28,6 +28,11 @@
         <div class="col-md-10">
             <div class="card-body">
 
+                {% if evento.imagem %}
+                <img src="{{ evento.imagem.url }}"
+                    class="evento-img">
+                {% endif %}
+
                 <h3 class="evento-titulo">
                     {{ evento.nome }}
                 </h3>

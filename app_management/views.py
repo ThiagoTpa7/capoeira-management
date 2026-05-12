@@ -117,13 +117,15 @@ def cadastrar_evento(request):
         nome = request.POST.get('nome')
         data = request.POST.get('data')
         descricao = request.POST.get('descricao')
+        imagem = request.FILES.get('imagem')
         localizacao = request.POST.get('localizacao') or None
 
         Evento.objects.create(
             nome=nome,
             data=data,
             descricao=descricao,
-            local=localizacao
+            local=localizacao,
+            imagem = imagem
         )
 
         return redirect('dashboard')

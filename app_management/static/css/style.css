@@ -216,3 +216,30 @@ ul{
 .instrumento-img:hover {
     transform: scale(1.03);
 }
+.evento-img {
+    width: 100%;
+
+    height: 250px;
+
+    object-fit: contain;
+
+    border-radius: 16px 16px 0 0;
+
+    display: block;
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar .btn {
+        width: 100%;
+
+        margin-bottom: 10px;
+    }
+
+    .navbar-collapse {
+        margin-top: 20px;
+    }
+
+
+}
