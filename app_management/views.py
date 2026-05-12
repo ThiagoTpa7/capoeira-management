@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
+# Chatgpt
+# https://chatgpt.com/c/6a028ef0-7df4-83e9-ba8c-bf368824226c
+
 
 def dashboard(request):
 
