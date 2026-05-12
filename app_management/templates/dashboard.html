@@ -2,8 +2,6 @@
 
 {% block content %}
 
-
-
 <h3 class="mt-5 mb-3">Eventos</h3>
 
 {% if request.user.is_superuser %}
@@ -13,24 +11,28 @@
 {% endif %}
 
 {% for evento in eventos %}
+
 <div class="card evento-card mb-4">
 
-    
-    <div class="row g-0">   
+    <div class="row g-0">
 
         <!-- DATA -->
-        <div class="col-md-2 evento-data">
+        <div class="col-12 col-md-2 evento-data">
+
             <h2>{{ evento.data|date:"d" }}</h2>
+
             <span>{{ evento.data|date:"M" }}</span>
+
         </div>
 
         <!-- CONTEÚDO -->
-        <div class="col-md-10">
+        <div class="col-12 col-md-10">
+
             <div class="card-body">
 
                 {% if evento.imagem %}
                 <img src="{{ evento.imagem.url }}"
-                    class="evento-img">
+                     class="evento-img">
                 {% endif %}
 
                 <h3 class="evento-titulo">
@@ -45,23 +47,35 @@
                     {{ evento.descricao|default:"Sem descrição" }}
                 </p>
 
-                <div class="d-flex gap-2 mt-3">
-                    <a href="{% url 'detalhe_evento' evento.id %}" class="btn btn-custom">
+                <div class="d-flex flex-wrap gap-2 mt-3">
+
+                    <a href="{% url 'detalhe_evento' evento.id %}"
+                       class="btn btn-custom">
+
                         Ver mais
+
                     </a>
 
                     {% if evento.local %}
-                    <a href="{{ evento.local }}" target="_blank" class="btn btn-outline-dark">
+                    <a href="{{ evento.local }}"
+                       target="_blank"
+                       class="btn btn-outline-dark">
+
                         Como chegar
+
                     </a>
                     {% endif %}
+
                 </div>
 
             </div>
+
         </div>
-	{% endfor %}
+
     </div>
 
 </div>
+
+{% endfor %}
 
 {% endblock %}

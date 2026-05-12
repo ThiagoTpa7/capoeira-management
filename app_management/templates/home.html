@@ -15,7 +15,7 @@
 <body>
 
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
     <div class="container">
 
@@ -28,7 +28,10 @@
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -62,7 +65,7 @@
             </ul>
 
             <!-- DIREITA -->
-            <div class="d-flex gap-2">
+            <div class="d-flex flex-column flex-md-row gap-2">
 
                 <a class="btn btn-outline-light"
                    href="/alunos/">
@@ -111,7 +114,7 @@
 </nav>
 
     <!-- Conteúdo -->
-    <div class="container mt-4">
+    <div class="container-fluid container-lg mt-4 px-3">
         {% block content %}
         {% endblock %}
     </div>
