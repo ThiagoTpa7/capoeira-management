@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: capoeira-management
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn capoeira_management.wsgi:application"

@@ -16,4 +16,5 @@ urlpatterns = [
     path('evento/<int:id>/', views.detalhe_evento, name='detalhe_evento'),
     path('quem-somos/', views.quem_somos, name='quem_somos'),
     path('historia-capoeira/', views.historia_capoeira, name='historia_capoeira'),
+    path('excluir-evento/<int:id>/', views.excluir_evento, name='excluir_evento'),
 ]

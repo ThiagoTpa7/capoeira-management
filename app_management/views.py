@@ -154,6 +154,11 @@ def detalhe_evento(request, id):
     evento = get_object_or_404(Evento, id=id)
     return render(request, 'detalhe_evento.html', {'evento': evento})
 
+def excluir_evento(request, id):
+    evento = get_object_or_404(Evento, id=id)
+    evento.delete()
+    return redirect('dashboard')
+
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')

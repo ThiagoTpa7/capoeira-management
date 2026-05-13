@@ -55,7 +55,17 @@
                         Ver mais
 
                     </a>
+                    {% if request.user.is_superuser %}
 
+                    <a href="{% url 'excluir_evento' evento.id %}"
+                    class="btn btn-danger"
+                    onclick="return confirm('Deseja realmente excluir este evento?')">
+
+                        Excluir
+
+                    </a>
+
+{% endif %}
                     {% if evento.local %}
                     <a href="{{ evento.local }}"
                        target="_blank"
