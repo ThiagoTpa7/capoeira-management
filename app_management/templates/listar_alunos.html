@@ -2,6 +2,40 @@
 
 {% block content %}
 
+    <form method="GET"
+      class="mb-4">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <input type="text"
+
+                    name="busca"
+
+                    class="form-control"
+
+                    placeholder="Pesquisar aluno..."
+
+                    value="{{ busca }}">
+
+            </div>
+
+            <div class="col-md-2">
+
+                <button type="submit"
+                        class="btn btn-custom w-100">
+
+                    Buscar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
     <h1>Lista de Alunos</h1>
     {% if request.user.is_authenticated %}
         <a href="/cadastrar-aluno/" class="btn btn-primary mb-3">Cadastrar novo aluno</a>
@@ -11,6 +45,8 @@
         <tr>
             <th>Nome</th>
             <th>Idade</th>
+            <th>Graduação</th>
+            <th>Corda</th>
             <th>Telefone</th>
             {% if request.user.is_authenticated %}   
             <th>Ações</th>
@@ -21,6 +57,8 @@
         <tr>
             <td>{{ aluno.nome }}</td>
             <td>{{ aluno.idade }}</td>
+            <td>{{ aluno.graduacao }}</td>
+            <td>{{ aluno.corda }}</td>
             <td>{{ aluno.telefone }}</td>
             {% if request.user.is_authenticated %}
                 <td>

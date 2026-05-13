@@ -63,16 +63,29 @@ def cadastrar_aluno(request):
         nome = request.POST.get('nome')
         idade = request.POST.get('idade')
         telefone = request.POST.get('telefone')
+        graduacao = request.POST.get('graduacao')
+        corda = request.POST.get('corda')
 
-        Aluno.objects.create(nome=nome, idade=idade, telefone=telefone)
+        Aluno.objects.create(
+            nome=nome, 
+            idade=idade, 
+            telefone=telefone, 
+            graduacao=graduacao,
+            corda=corda
+            )
 
         return redirect('dashboard')
 
     return render(request, 'cadastrar_aluno.html')
     
 def listar_alunos(request):
+    busca = request.GET.get('busca')
     alunos = Aluno.objects.all()
-    return render(request, 'listar_alunos.html', {'alunos': alunos})
+    if busca:
+        alunos = alunos.filter(
+            nome__icontains=busca
+        )
+    return render(request, 'listar_alunos.html', {'alunos': alunos, 'busca':busca})
 
 def excluir_aluno(request, id):
     aluno = get_object_or_404(Aluno, id=id)
