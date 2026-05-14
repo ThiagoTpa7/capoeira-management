@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'capoeira_management.wsgi.application'
 DATABASES = {
     'default': {
         'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL")
+        os.environ.get("DATABASE_URL"))
     }
 }
 
