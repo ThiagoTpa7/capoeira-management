@@ -85,16 +85,6 @@
     letter-spacing: 2px;
 }
 
-/* Botões personalizados */
-.btn-custom {
-    background-color: var(--cor-secundaria);
-    color: white;
-    border: none;
-}
-
-.btn-custom:hover {
-    background-color: #a8832f !important;
-}
 
 .efeito-btn {
     transition: all 0.3s ease;
@@ -242,13 +232,6 @@
     display: block;
 }
 
-.collapse:not(.show) {
-    display: none !important;
-}
-
-.collapse.show {
-    display: block !important;
-}
 
 /* Navbar */
 .navbar {
@@ -259,4 +242,8 @@
     color: var(--cor-secundaria) !important;
     font-size: 20px;
     font-weight: bold;
+}
+
+.navbar-collapse {
+    transition: 0.3s ease;
 }
