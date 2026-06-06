@@ -22,6 +22,28 @@
     
 </head>
 <body>
+    <h1>TESTE DE DEPLOY DO THIAGO</h1>
+    ```
+Salve, faça o `git add .`, `git commit -m "Teste de rastreio"`, `git push` e aguarde o deploy no Render.
+
+* **Se o texto "TESTE DE DEPLOY DO THIAGO" APARECER na tela do Render:** O Render está lendo o arquivo certo! O problema do footer sumir é apenas um conflito de CSS da classe `fixed-bottom` do Bootstrap (que pode estar escondendo o footer embaixo do conteúdo da tela).
+* **Se o texto NÃO APARECER no Render:** O Render está usando **outro arquivo HTML** como base, e não esse que você está editando.
+
+---
+
+#### Passo 2: Se o texto NÃO apareceu (Corrigindo o arquivo errado)
+Se o texto de teste não apareceu, procure no seu VS Code (usando o `Ctrl + Shift + F`) por outras ocorrências da tag `<nav>` ou do termo `navbar-brand`. 
+
+Você vai descobrir que o Django está renderizando um HTML que está em outro caminho (por exemplo, dentro de `capoeira_management/templates/` em vez de `templates/` da raiz, ou vice-versa). Assim que encontrar o arquivo antigo que o Render está usando de verdade, cole o seu código novo nele.
+
+---
+
+#### Passo 3: Se o texto APARECEU (Corrigindo o CSS do Bootstrap)
+Se o texto do teste apareceu mas o footer continua invisível, o culpado é a classe do Bootstrap **`fixed-bottom`**. Essa classe fixa o rodapé no final da tela usando `position: fixed`. Se o seu conteúdo da página for muito longo, ele pode estar cobrindo o footer ou o empurrando para fora da área visível.
+
+Tente mudar a tag do seu footer para uma estrutura padrão sem fixação:
+
+```html
 
     <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -128,9 +150,9 @@
         {% endblock %}
     </div>
 
-<footer class="fixed-bottom bg-dark text-light py-3">
+<footer class="bg-dark text-light py-4 mt-5">
     <div class="container-fluid text-center">
-        &copy; 2024 Thiago Pinheiro
+        <p class="mb-0">&copy; 2024 Thiago Pinheiro - Projeto Capoeira</p>
     </div>
 </footer>
 
