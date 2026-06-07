@@ -5,9 +5,9 @@
 <div class="container">
 
     {% if evento.imagem %}
-    <img src="{{ evento.imagem }}" class="img-fluid" alt="{{ evento.titulo }}">
+    <img src="{{ evento.imagem }}" class="evento-img" alt="{{ evento.titulo }}">
 {% else %}
-    <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=600" class="img-fluid" alt="Capoeira Padrão">
+    <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=600" class="evento-img" alt="Capoeira Padrão">
 {% endif %}
     <h2 class="mb-3">{{ evento.nome }}</h2>
 
