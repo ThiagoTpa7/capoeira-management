@@ -22,28 +22,6 @@
     
 </head>
 <body>
-    <h1>TESTE DE DEPLOY DO THIAGO</h1>
-    ```
-Salve, faça o `git add .`, `git commit -m "Teste de rastreio"`, `git push` e aguarde o deploy no Render.
-
-* **Se o texto "TESTE DE DEPLOY DO THIAGO" APARECER na tela do Render:** O Render está lendo o arquivo certo! O problema do footer sumir é apenas um conflito de CSS da classe `fixed-bottom` do Bootstrap (que pode estar escondendo o footer embaixo do conteúdo da tela).
-* **Se o texto NÃO APARECER no Render:** O Render está usando **outro arquivo HTML** como base, e não esse que você está editando.
-
----
-
-#### Passo 2: Se o texto NÃO apareceu (Corrigindo o arquivo errado)
-Se o texto de teste não apareceu, procure no seu VS Code (usando o `Ctrl + Shift + F`) por outras ocorrências da tag `<nav>` ou do termo `navbar-brand`. 
-
-Você vai descobrir que o Django está renderizando um HTML que está em outro caminho (por exemplo, dentro de `capoeira_management/templates/` em vez de `templates/` da raiz, ou vice-versa). Assim que encontrar o arquivo antigo que o Render está usando de verdade, cole o seu código novo nele.
-
----
-
-#### Passo 3: Se o texto APARECEU (Corrigindo o CSS do Bootstrap)
-Se o texto do teste apareceu mas o footer continua invisível, o culpado é a classe do Bootstrap **`fixed-bottom`**. Essa classe fixa o rodapé no final da tela usando `position: fixed`. Se o seu conteúdo da página for muito longo, ele pode estar cobrindo o footer ou o empurrando para fora da área visível.
-
-Tente mudar a tag do seu footer para uma estrutura padrão sem fixação:
-
-```html
 
     <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -150,9 +128,60 @@ Tente mudar a tag do seu footer para uma estrutura padrão sem fixação:
         {% endblock %}
     </div>
 
-<footer class="bg-dark text-light py-4 mt-5">
-    <div class="container-fluid text-center">
-        <p class="mb-0">&copy; 2024 Thiago Pinheiro - Projeto Capoeira</p>
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+    <div class="container">
+        <div class="row text-center text-md-start align-items-center">
+            
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <h5 class="text-uppercase fw-bold text-warning mb-3">Projeto Capoeira</h5>
+                <p class="small text-muted">
+                    Transformando vidas, preservando a cultura e construindo cidadania através do esporte e da disciplina.
+                </p>
+            </div>
+
+            <div class="col-12 col-md-8">
+                <h6 class="text-uppercase fw-bold text-warning mb-3 text-center">
+                    Compromisso com os Objetivos de Desenvolvimento Sustentável (ODS) da ONU
+                </h6>
+                
+                <div class="row g-2 justify-content-center text-center">
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <div class="p-2 border border-secondary rounded bg-secondary bg-opacity-10 small" title="Saúde e Bem-Estar">
+                            <span class="d-block fs-5">❤️</span> ODS 3
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <div class="p-2 border border-secondary rounded bg-secondary bg-opacity-10 small" title="Educação de Qualidade">
+                            <span class="d-block fs-5">🎓</span> ODS 4
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <div class="p-2 border border-secondary rounded bg-secondary bg-opacity-10 small" title="Redução das Desigualdades">
+                            <span class="d-block fs-5">⚖️</span> ODS 10
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <div class="p-2 border border-secondary rounded bg-secondary bg-opacity-10 small" title="Cidades e Comunidades Sustentáveis">
+                            <span class="d-block fs-5">🌍</span> ODS 11
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <div class="p-2 border border-secondary rounded bg-secondary bg-opacity-10 small" title="Paz, Justiça e Instituições Eficazes">
+                            <span class="d-block fs-5">👥</span> ODS 16
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary my-4">
+
+        <div class="row">
+            <div class="col-12 text-center text-muted small">
+                &copy; 2026 Thiago Pinheiro - Todos os direitos reservados.
+            </div>
+        </div>
     </div>
 </footer>
 
