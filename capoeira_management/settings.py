@@ -78,12 +78,25 @@ WSGI_APPLICATION = 'capoeira_management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL"))
+db_url = os.environ.get("DATABASE_URL", "")
+
+# Correção para o terminal do Windows local (converte bytes para string se necessário)
+if isinstance(db_url, bytes):
+    db_url = db_url.decode("utf-8")
+
+if db_url:
+    # Se estiver no Render (com o banco do Render ativo), usa a URL direta
+    DATABASES = {
+        'default': dj_database_url.parse(db_url)
     }
-}
+else:
+    # Se estiver rodando local no VS Code (sem DATABASE_URL), usa o SQLite padrão
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
