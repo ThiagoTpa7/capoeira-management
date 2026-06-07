@@ -4,7 +4,7 @@
 
 <h1 class="mb-4">Cadastrar Evento</h1>
 
-<form method="POST" enctype="multipart/form-data" class="card p-4">
+<form method="POST" class="card p-4">
     {% csrf_token %}
 
     <div class="mb-3">
@@ -24,22 +24,19 @@
 
     <div class="mb-3">
         <label class="form-label">Link da localização (Google Maps)</label>
-        <input type="url" name="localizacao" class="form-control" placeholder="https://maps.google.com/...">
+        <input type="url" name="localizacao" class="form-control" placeholder="https://maps.app.goo.gl/...">
     </div>
 
     <div class="mb-3">
-
-    <label>Imagem do Evento</label>
-
-    <input type="file"
-           name="imagem"
-           class="form-control">
-
+        <label class="form-label">Link da Imagem do Evento (URL)</label>
+        <input type="url" 
+               name="imagem" 
+               class="form-control" 
+               placeholder="https://link-da-imagem.com/foto.jpg">
     </div>
 
     <button type="submit" class="btn btn-success">Cadastrar</button>
     <a href="/" class="btn btn-secondary">Cancelar</a>
-
 </form>
 
 {% endblock %}
