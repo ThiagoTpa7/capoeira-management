@@ -41,11 +41,7 @@ class Evento(models.Model):
 
     local = models.URLField(blank=True, null=True)
 
-    imagem = models.ImageField(
-        upload_to= 'eventos/',
-        null= True,
-        blank= True
-    )
+    imagem = models.URLField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return f"{self.nome} - {self.data}"
